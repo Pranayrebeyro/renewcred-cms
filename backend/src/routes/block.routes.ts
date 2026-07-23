@@ -3,6 +3,7 @@ import { authenticate } from "../middleware/auth.middleware";
 
 import {
   createBlock,
+  getAllBlocks,
   getBlocks,
   updateBlock,
   deleteBlock,
@@ -11,11 +12,14 @@ import {
 
 const router = Router();
 
-// Create Block
-router.post("/", authenticate, createBlock);
+// Get All Blocks
+router.get("/", authenticate, getAllBlocks);
 
 // Get Blocks of a Page
 router.get("/:pageId", authenticate, getBlocks);
+
+// Create Block
+router.post("/", authenticate, createBlock);
 
 // Reorder Blocks
 router.patch("/reorder", authenticate, reorderBlocks);

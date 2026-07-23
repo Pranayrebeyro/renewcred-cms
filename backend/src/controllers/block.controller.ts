@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import blockService from "../services/block.service";
 
+// =======================
 // Create Block
+// =======================
 export const createBlock = async (req: Request, res: Response) => {
   try {
     const { pageId, type, data, order } = req.body;
@@ -28,10 +30,39 @@ export const createBlock = async (req: Request, res: Response) => {
   }
 };
 
-// Get Blocks
-export const getBlocks = async (req: Request, res: Response) => {
+// =======================
+// Get All Blocks
+// =======================
+export const getAllBlocks = async (
+  req: Request,
+  res: Response
+) => {
   try {
-    const pageId = req.params.pageId as string;
+    const blocks = await blockService.getAllBlocks();
+
+    return res.status(200).json({
+      success: true,
+      data: blocks,
+    });
+  } catch (error: any) {
+    console.error("GET ALL BLOCKS ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+// =======================
+// Get Blocks by Page
+// =======================
+export const getBlocks = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const pageId = req.params.pageId;
 
     const blocks = await blockService.getBlocks(pageId);
 
@@ -49,10 +80,15 @@ export const getBlocks = async (req: Request, res: Response) => {
   }
 };
 
+// =======================
 // Update Block
-export const updateBlock = async (req: Request, res: Response) => {
+// =======================
+export const updateBlock = async (
+  req: Request,
+  res: Response
+) => {
   try {
-    const id = req.params.id as string;
+    const id = req.params.id;
 
     const block = await blockService.updateBlock(id, req.body);
 
@@ -71,10 +107,15 @@ export const updateBlock = async (req: Request, res: Response) => {
   }
 };
 
+// =======================
 // Delete Block
-export const deleteBlock = async (req: Request, res: Response) => {
+// =======================
+export const deleteBlock = async (
+  req: Request,
+  res: Response
+) => {
   try {
-    const id = req.params.id as string;
+    const id = req.params.id;
 
     const result = await blockService.deleteBlock(id);
 
@@ -92,7 +133,9 @@ export const deleteBlock = async (req: Request, res: Response) => {
   }
 };
 
+// =======================
 // Reorder Blocks
+// =======================
 export const reorderBlocks = async (
   req: Request,
   res: Response

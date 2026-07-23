@@ -27,10 +27,16 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <>
-      <h2 className="mb-8 text-4xl font-bold text-gray-900">
-        Dashboard Overview
-      </h2>
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-4xl font-bold text-white">
+          Dashboard
+        </h1>
+
+        <p className="mt-2 text-slate-400">
+          Welcome back! Here's an overview of your CMS.
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
         <StatCard
@@ -53,6 +59,6 @@ export default function DashboardPage() {
           value={stats.totalBlocks}
         />
       </div>
-    </>
+    </div>
   );
 }

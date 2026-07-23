@@ -62,7 +62,7 @@ export const getBlocks = async (
   res: Response
 ) => {
   try {
-    const pageId = req.params.pageId;
+    const pageId = String(req.params.pageId);
 
     const blocks = await blockService.getBlocks(pageId);
 
@@ -88,7 +88,7 @@ export const updateBlock = async (
   res: Response
 ) => {
   try {
-    const id = req.params.id;
+    const id = String(req.params.id);
 
     const block = await blockService.updateBlock(id, req.body);
 
@@ -115,7 +115,7 @@ export const deleteBlock = async (
   res: Response
 ) => {
   try {
-    const id = req.params.id;
+    const id = String(req.params.id);
 
     const result = await blockService.deleteBlock(id);
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { getDashboardStats } from "@/services/dashboard.service";
 import StatCard from "@/components/dashboard/StatCard";
 import { DashboardStats } from "@/types/dashboard";
@@ -17,10 +16,10 @@ export default function DashboardPage() {
   useEffect(() => {
     const loadStats = async () => {
       try {
-        const response = await getDashboardStats();
-        setStats(response.data);
+        const stats = await getDashboardStats();
+        setStats(stats);
       } catch (error) {
-        console.error(error);
+        console.error("Failed to load dashboard stats:", error);
       }
     };
 

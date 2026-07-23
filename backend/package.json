@@ -7,11 +7,18 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    
+
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate deploy",
-    "prisma:push": "prisma db push"
+    "prisma:push": "prisma db push",
+
+    "seed": "ts-node prisma/seed.ts"
   },
+
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -38,6 +45,7 @@
     "@types/morgan": "^1.9.10",
     "@types/multer": "^2.2.0",
     "@types/node": "^26.1.1",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.3"
   }
